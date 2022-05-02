@@ -1,0 +1,1 @@
+web: gunicorn ettlagsmodell2:server
