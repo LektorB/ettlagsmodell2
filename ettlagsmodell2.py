@@ -1,6 +1,5 @@
 import plotly.express as px
 from dash import dash, dcc, html
-from jupyter_dash import JupyterDash
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from dash_bootstrap_templates import load_figure_template  # Bruker bootstap-template i plotly grafene
@@ -11,8 +10,8 @@ tyk = 50  # 100% - piltykkelse
 
 Template = 'flatly'  # bruk samme "theme" som under, men med småbokstaver
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY],
-                  meta_tags=[{'name': 'viewport',  # skalering for mobil
-                              'content': 'width=device-width, initial-scale=0.9'}]
+                meta_tags=[{'name': 'viewport',  # skalering for mobil
+                            'content': 'width=device-width, initial-scale=0.9'}]
                 )
 server = app.server
 load_figure_template(Template)
@@ -29,9 +28,6 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Card([
             dbc.CardBody([
-                # html.H4("",
-                #     #"$\begin{equation}T_{j} =  \left( \frac{(1-\alpha)I_{sol}}{4\sigma(1-\frac{\epsilon}{2})} \right) ^{\frac{1}{4}} \tag{7}\end{equation}$",
-                #         className="card-title",style={'font-size': '1.2vw'}),
                 dbc.Row([
                     dbc.Col([
                         dbc.InputGroup(
@@ -85,12 +81,12 @@ def piler(klikk, omega, alfa, epsilon):
     temp = (((1 - alfa) * omega) / (4 * sigma * (1 - (epsilon / 2)))) ** (1 / 4)
     temp2 = temp / 2 ** 0.25
 
-    U = sigma * (temp) ** 4
-    U_atm = epsilon * sigma * (temp2) ** 4
-    skala = (4 * U / omega) * tyk
+    u = sigma * temp ** 4
+    u_atm = epsilon * sigma * temp2 ** 4
+    skala = (4 * u / omega) * tyk
     skala2 = skala * (1 - epsilon)
     skala = skala * epsilon
-    skala3 = (4 * U_atm / omega) * tyk
+    skala3 = (4 * u_atm / omega) * tyk
 
     fig = px.line(x=[0], y=[0])
 
@@ -141,10 +137,10 @@ def piler(klikk, omega, alfa, epsilon):
                        showarrow=False)
 
     jord = (
-                '$T_{j}=\\left(\\frac{(1-\\alpha)\\Omega)}{4\\sigma(1-\\frac{\\epsilon}{2})}\\right)^{\\frac{1}{4}}=\\text{' + str(
-            round(temp, 1)) + ' K =' + str(round(temp - 273, 1)) + '} ^{\circ}C$')
+            '$T_{j}=\\left(\\frac{(1-\\alpha)\\Omega)}{4\\sigma(1-\\frac{\\epsilon}{2})}\\right)^{\\frac{1}{4}}=\\text{'
+            + str(round(temp, 1)) + ' K =' + str(round(temp - 273, 1)) + '} ^{\\circ}C$')
     atm = ('$T_{a}=\\frac{T_{j}}{\\sqrt[4]{2}} =\\text{' + str(round(temp2, 1)) + ' K =' + str(
-        round(temp2 - 273, 1)) + '} ^{\circ}C$')
+        round(temp2 - 273, 1)) + '} ^{\\circ}C$')
 
     fig.add_annotation(
         text=jord,
@@ -173,4 +169,3 @@ def piler(klikk, omega, alfa, epsilon):
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=50)
-
