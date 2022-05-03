@@ -63,7 +63,7 @@ app.layout = dbc.Container([
         ], class_name="mt-3")
 
     ])
-])
+],fluid='lg')
 
 
 # ------------------
@@ -97,43 +97,43 @@ def piler(klikk, omega, alfa, epsilon):
                        arrowcolor="yellow", arrowside='none')
 
     fig.add_annotation(text='$\\frac{(1-\\alpha) \\Omega}{4}$', xref="x", yref="y", x=0.7, y=0.1, showarrow=False,
-                       font=dict(size=16))
+                       font=dict(size=12))
 
     if (1 - alfa) > 0.1:
         fig.add_annotation(ax=0.7 + alfa * 0.025, axref='x', ay=0.9, ayref='y',
                            x=0.7 + alfa * 0.025, xref='x', y=0.2, yref='y',
                            arrowwidth=tyk * (1 - alfa), startarrowhead=6, arrowhead=4, arrowsize=0.3,
-                           font=dict(size=16), arrowcolor="yellow")
+                           font=dict(size=12), arrowcolor="yellow")
 
     if alfa > 0.1:
         fig.add_annotation(ax=0.5, axref='x', ay=2.2, ayref='y',
                            x=0.69, xref='x', y=0.60, yref='y', arrowside='start',
-                           arrowwidth=alfa * tyk, arrowhead=6, startarrowhead=4, startarrowsize=0.3, font=dict(size=16),
+                           arrowwidth=alfa * tyk, arrowhead=6, startarrowhead=4, startarrowsize=0.3, font=dict(size=12),
                            text="$\\frac{\\alpha \\Omega}{4}$", arrowcolor="yellow", align='left')
 
     # jord
     if skala > 0.1:
         fig.add_annotation(ax=0.99, axref='x', ay=1.2, ayref='y',
                            x=0.99, xref='x', y=0.2, yref='y', arrowside='start',
-                           arrowwidth=skala, startarrowhead=4, startarrowsize=0.3, font=dict(size=16), arrowcolor="red",
+                           arrowwidth=skala, startarrowhead=4, startarrowsize=0.3, font=dict(size=12), arrowcolor="red",
                            text='$\\epsilon\\sigma T_{j}^4$')
 
     if skala2 > 0.1:
         fig.add_annotation(ax=1.12, axref='x', ay=2.2, ayref='y',
                            x=1.01, xref='x', y=0.2, yref='y', arrowside='start',
-                           arrowwidth=skala2, startarrowhead=4, startarrowsize=0.3, font=dict(size=16),
+                           arrowwidth=skala2, startarrowhead=4, startarrowsize=0.3, font=dict(size=12),
                            text="'$(1-\\epsilon)\\sigma T_{j}^4$'", arrowcolor="red", )
 
-    fig.add_annotation(text='$\\sigma T_{j}^4$', xref="x", yref="y", x=0.99, y=0.1, font=dict(size=16), showarrow=False)
+    fig.add_annotation(text='$\\sigma T_{j}^4$', xref="x", yref="y", x=0.99, y=0.1, font=dict(size=12), showarrow=False)
 
     # atmosfære
     if skala3 > 0.1:
         fig.add_annotation(ax=1.35, axref='x', ay=2.2, ayref='y',
                            x=1.35, xref='x', y=0.2, yref='y', arrowside='end+start',
                            arrowwidth=skala3, arrowhead=4, startarrowhead=4, startarrowsize=0.3, arrowsize=0.3,
-                           font=dict(size=16), text="$\\epsilon \\sigma T_{a}^4$", arrowcolor="FireBrick", )
+                           font=dict(size=12), text="$\\epsilon \\sigma T_{a}^4$", arrowcolor="FireBrick", )
 
-    fig.add_annotation(text='$\\epsilon \\sigma T_{a}^4$', xref="x", yref="y", x=1.35, y=0.1, font=dict(size=16),
+    fig.add_annotation(text='$\\epsilon \\sigma T_{a}^4$', xref="x", yref="y", x=1.35, y=0.1, font=dict(size=12),
                        showarrow=False)
 
     jord = (
@@ -147,7 +147,7 @@ def piler(klikk, omega, alfa, epsilon):
         xref="x", yref="y",
         x=1.7, y=0.7,
         showarrow=False,
-        font=dict(size=16),
+        font=dict(size=12),
     )
 
     fig.add_annotation(
@@ -155,10 +155,10 @@ def piler(klikk, omega, alfa, epsilon):
         xref="x", yref="y",
         x=1.7, y=1.7,
         showarrow=False,
-        font=dict(size=16),
+        font=dict(size=12),
     )
 
-    fig.update_layout(xaxis_range=[0.4, 2], yaxis_range=[0, 2], margin_l=0, margin_r=0)
+    fig.update_layout(xaxis_range=[0.4, 2], yaxis_range=[0, 2], margin_l=0, margin_r=0,height=350)
 
     fig.add_hrect(y0=0, y1=0.2, fillcolor="DarkOliveGreen", opacity=0.5, layer="below", line_width=0)
     fig.add_hrect(y0=1, y1=1.4, fillcolor="lightblue", opacity=0.5, layer="above", line_width=0)
